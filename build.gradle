@@ -1,0 +1,37 @@
+plugins {
+    id 'java'
+}
+
+ext {
+    currentVersion = '0.0.3'
+}
+
+group 'ru.romangr'
+version currentVersion
+
+apply plugin: 'java'
+apply plugin: 'jacoco'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    compileOnly('com.google.code.findbugs:jsr305:3.0.2')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.9.8')
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.8")
+    compileOnly('org.projectlombok:lombok:1.18.12')
+    annotationProcessor('org.projectlombok:lombok:1.18.12')
+
+    testCompileOnly('org.projectlombok:lombok:1.18.12')
+    testAnnotationProcessor('org.projectlombok:lombok:1.18.12')
+    testImplementation('org.assertj:assertj-core:3.10.0')
+    testImplementation('org.junit.jupiter:junit-jupiter:5.4.1')
+    testRuntime('org.junit.jupiter:junit-jupiter-engine:5.2.0')
+}
